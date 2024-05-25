@@ -1,0 +1,266 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Unidad 2</title>
+        
+    </head>
+    <style>
+        body {
+            margin: 0; 
+        }
+        nav{
+            max-width: 1300px;
+            margin:0;
+            background-color: #333;
+            font-size: 20px;
+            margin-top: -40px;
+            
+        }
+        .menu-horizontal{
+            width: 100%;
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            padding: 0;
+            margin: 0;
+            position: fixed; /* Hacemos que el menú sea fijo */
+    top: 0; /* Lo fijamos en la parte superior */
+    background-color: #333; /* Añadimos un color de fondo */
+        }
+        .menu-horizontal > li > a{
+            display: block;
+            padding: 15px 0px;
+            color: white;
+            text-decoration: none;
+        }
+        .menu-horizontal > li:hover{
+            background-color: #1472a8;
+        }
+        .contenedor {
+            margin: -10px; 
+            padding-top: 25px;
+            padding-bottom: -10px;
+            padding-right: 20px;
+        }
+        .contenedor-individual {
+            padding-top: 30px;
+            padding-bottom: -200px;
+            text-align: justify;
+            margin: -50px 10px;
+        }
+        .texto {
+            margin: 100px 50px;
+            text-align: justify;
+            font-family: "Futura", "Arial", sans-serif;
+            font-size: 23px;
+        }
+        .subtitulo {
+            color: #5d3f6e;
+            font-size: 26px;
+            font-style: oblique;
+            font-weight: bold;
+            
+            text-align: justify;
+        }
+
+        /* Estilos para las sublistas */
+        .submenu {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            display: none;
+            position: absolute;
+            background-color:  #333; /* Color de fondo de la lista desplegable */
+            min-width: 100px;
+            max-height: 400px; /* Establecemos una altura máxima */
+            overflow-y: auto; /* Agregamos una barra de desplazamiento vertical */
+            box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.356);
+            z-index: 1;
+        }
+
+        .submenu li a{
+            padding: 5px 40px;
+            display: block;
+            color: #e9dddd; /* Color de la letra del submenu */
+            text-decoration: none;
+        }
+        .submenu.open {
+            display: block;
+        }
+    </style>
+    <body>
+        <div>
+            <nav>
+                <ul class="menu-horizontal">
+                    <li><a href="index.html"> Regresar </a></li>
+                    <li>
+                        <a>2.1 Organización del procesador</a>
+                        <ul class="submenu">
+                            <li><a href="#org">2.1 Organización del procesador</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>2.2 Estructura de registros</a>
+                        <ul class="submenu">
+                            <li><a href="#est">2.2 Estructura de registros</a></li>
+                            <li><a href="#2.2.1">2.2.1 Registros visibles para el usuario</a></li>
+                            <li><a href="#2.2.2">2.2.2 Registros de control y de estados</a></li>
+                            <li><a href="#2.2.3">2.2.3 Ejemplos de registros de CPU reales</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>2.3 El ciclo de instrucción</a>
+                        <ul class="submenu">
+                            <li><a href="#cic">2.3 El ciclo de instrucción</a></li>
+                            <li><a href="#2.3.1">2.3.1 Ciclo Fetch-Decode-Execute</a></li>
+                            <li><a href="#2.3.2">2.3.2 Segmentación de instrucciones</a></li>
+                            <li><a href="#2.3.3">2.3.3 Conjunto de instrucciones</a></li>
+                            <li><a href="#2.3.4">2.3.4 Modos de dirreccionamiento</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a>2.4 Casos de estudio de CPU reales</a>
+                        <ul class="submenu">
+                            <li><a href="#casos">2.4 Casos de estudio de CPU reales</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+    </div>
+    <script>
+        // Función para mostrar u ocultar las sublistas cuando se hace clic en las opciones principales
+        document.querySelectorAll('.menu-horizontal > li').forEach(item => {
+            item.addEventListener('click', event => {
+                const submenu = item.querySelector('.submenu');
+                if (submenu) {
+                    // Si el submenu está abierto, ciérralo
+                    if (submenu.classList.contains('open')) {
+                        submenu.classList.remove('open');
+                    } else {
+                        // Si el submenu está cerrado, cierra todos los demás submenús y luego ábrelo
+                        closeAllSubmenus();
+                        submenu.classList.add('open');
+                    }} }); });
+        // Función para cerrar todos los submenús abiertos
+        function closeAllSubmenus() {
+            document.querySelectorAll('.menu-horizontal .submenu').forEach(submenu => {
+                submenu.classList.remove('open');
+            });}
+    </script>
+
+    <div  class="texto">
+        <div id="org" class="contenedor">
+        <font size="7" face= times new roman color="#261483"><center>
+            <p><b>2.1 ORGANIZACIÓN DEL PROCESADOR</b> </font> </p> 
+            <p>La Unidad de Procesamiento (CPU) controla el funcionamiento del computador y lleva a cabo sus funciones de procesamiento de datos. Frecuentemente se le llama procesador. Un procesador, incluye tanto registros visibles por el usuario como registros de control/estado. Los registros visibles por el usuario pueden ser de uso general o tener una utilidad especial, mientras que los registros de control y estado se usan para controlar el funcionamiento del procesador, un claro ejemplo es el contador de programa.</p>
+            <img src="https://static.wixstatic.com/media/b9e9b2_f8866c49a4a24f53821180d49d2123c0.gif" width="400" height="300"></center>    
+        </div>
+            <div id="est" class="contenedor">
+                <font size="7" face= times new roman color="#261483"><center>
+                    <p><b>2.2 ESTRUCTURA DE REGISTROS</b> </font> </p> 
+                <p>Registros del CPU
+                Se emplean para controlar las instrucciones en ejecución, manejar direccionamiento de memoria y propiciar la capacidad aritmética.
+                <br>Los registros vienen de tres tipos: datos, direcciones e índice, que tiene lugar en casi todos los aspectos de la operación del CPU.
+                <br>El tamaño de un registro depende del CPU; los más simples tienen registros que aceptan 8 o 16 bits de datos y los más complejos tienen registros de 32, 48 o 64 bits.</p>
+                <img src="https://4.bp.blogspot.com/-L0st5T4U8lw/VU2gLZHc_BI/AAAAAAAAACc/_1aYM28vTvE/s280/9.png" width="500" height="300"></center>
+            </div>
+              <br>
+            <div id="2.2.1" class="contenedor-individual">
+                <p><u class="subtitulo">2.2.1 Registros visibles para el usuario</u>
+                <br>Un registro visible al usuario es aquél que puede ser referenciado por medio del lenguaje máquina que ejecuta la CPU. Prácticamente todos los diseños contemporáneos de CPUs están provistos de varios registros visibles al usuario, en oposición a disponer de un único acumulador.</p>
+                <ul>Podemos clasificarlos en:
+                        
+                              <li><font color="09473d"><b>Uso General</b></font>: son aquellos que pueden guardar tanto datos como direcciones.</li>
+                              <li><font color="09473d"><b>Datos</b></font>: pueden ser asignados por el programador a diversas funciones. En algunos casos son de propósito general y pueden ser empleados por cualquier instrucción de máquina que lleve a cabo operaciones sobre los datos.</li>
+                              <li><font color="09473d"><b>Direcciones</b></font>: contienen direcciones en la memoria principal de datos y este tipo de registro puede ser de propósito general o estar a un modo específico de direccionamiento.</li>
+                              <li><font color="09473d"><b>Códigos de Condición</b></font>: también conocidos como indicadores o flags, son bits activados por el procesador como resultado de determinadas operaciones</li></b> </font>
+                            </ul>
+                            
+            </div>
+            <div id="2.2.2" class="contenedor-individual">
+                <p><u class="subtitulo">2.2.2 Registros de control y de estados</u>
+                <br>Se utilizan para controlar las operaciones del procesador, la mayor parte de estos registros no son visibles al usuario y algunos pueden ser accesibles a las instrucciones de maquina ejecutadas en un modo de control.</p>
+                <ul>Los registros utilizados son los siguientes:
+                              <li><font color="09473d"><b>Registro de direcciones de memoria (MAR)</b></font>: contiene la dirección en donde se efectuará la próxima lectura o escritura de datos. El numero de direcciones depende del tamaño de la MAR.</li>
+                              <li><font color="09473d"><b>Registro de datos de memoria (MBR)</b></font>: contiene los datos que van a ser escritos en la memoria o los que fueron leídos en ella.</li>
+                              <li><font color="09473d"><b>Registro de direcciones de entrada y salida (I/O AR)</b></font>: especifica al dispositivo ya sea de entrada o salida.</li>
+                              <li><font color="09473d"><b>Registro de datos de entrada y salida (I/O BR)</b></font>: es una área temporal en donde se lleva a cabo el intercambio de datos entre el procesador y el dispositivo de entrada y salida que esta especificado en IOAR.</li></b> </font>
+                              <li><font color="09473d"><b>Registro de instrucciones (IR)</b></font>: contiene la dirección de la siguiente instrucción que se va a ejecutar.</li>
+                              <li><font color="09473d"><b>Palabras de estado del programa (PSW)</b></font>: contiene códigos de condición junto con otras informaciones de estado como el signo, acarro, desbordamiento, entre otras.</li></b> </font>
+                            </ul> 
+            </div>
+            <div id="2.2.3" class="contenedor-individual">
+                <p><u class="subtitulo">2.2.3 Ejemplos de registros de CPU reales</u>
+                <br>En algún diseño concreto de procesador es posible encontrar otros registros relativos a estado y control. Puede existir un puntero a un bloque de memoria que contenga información de estado adicional. En las máquinas que usan interrupciones vectorizadas puede existir un registro de vector de interrupción. Si se utiliza una pila para llevar a cabo ciertas funciones, se necesita un puntero de pila del sistema. En un sistema de memoria virtual se usa un puntero a la tabla de páginas. Por último, pueden emplearse registros para el control de operaciones de E/S. En el diseño de la organización de los registros de control y estado entran en juego varios factores. Una cuestión primordial es el soporte del sistema operativo. Algunos tipos de información de control son de utilidad específica para el sistema operativo. Si el diseñador del procesador posee una comprensión funcional del sistema operativo que se va a utilizar, la organización de los registros puede adaptarse hasta cierto punto a ese sistema operativo. Otra decisión importante en el diseño es la distribución de información de control entre registros y memoria. Es frecuente dedicar los primeros (más bajos) pocos cientos o miles de palabras de memoria para fines de control. El diseñador debe decidir cuánta información de control debiera estar en registros y cuánta en memoria. Se presenta el compromiso habitual entre coste y velocidad.</p>
+            </div>
+            
+            <div id="cic" class="contenedor">
+                <font size="7" face= times new roman color="#261483"><center>
+                    <p><b>2.3 EL CICLO DE INSTRUCCIÓN</b> </font> </p>
+                    <p>El Ciclo Instrucción cuenta con dos fases, la primera es la obtención (búsqueda) y la segunda es la fase de ejecución</p>
+                    <ul>Un ciclo de instrucción incluye los siguientes subciclos:
+                        <li><font color="09473d"><b>Captación</b></font>: interpretar el código de operación y llevar a cabo la operación indicada.</li>
+                        <li><font color="09473d"><b>Ejecución</b></font>: contiene los datos que van a ser escritos en la memoria o los que fueron leídos en ella.</li>
+                        <li><font color="09473d"><b>Interrupción</b></font>: si las interrupciones están habilitadas y ha ocurrido una interrupción, guardar el estado del proceso actual y atender la interrupción.</li>
+                        <li><font color="09473d"><b>Ciclo Indirecto</b></font>: La ejecución de una instrucción puede involucrar a uno o más operandos en memoria, cada uno de los cuales requiere un acceso a memoria. Además, si se usa direccionamiento indirecto serán necesarios accesos a memoria adicionales. Podemos considerar la captación de direcciones indirectas como un subciclo de instrucción más. La principal línea de actividad consiste en alternar las actividades de captación y ejecución de instrucciones. Después de que una instrucción sea captada, es examinada para determinar si incluye algún direccionamiento indirecto. Si es así, los operandos requeridos se captan usando direccionamiento indirecto. Tras la ejecución se puede procesar una interrupción antes de la captación de la siguiente instrucción.</li></b> </font>
+                    </ul> 
+                    <img src="https://lamiradelsniper.wordpress.com/wp-content/uploads/2012/08/082012_1432_ejecucindei1.png" width="300" height="400"></center>
+            </div>
+<br>
+            <div id="2.3.1" class="contenedor-individual">
+                <p><u class="subtitulo">2.3.1 Ciclo Fetch-Decode-Execute</u>
+                <br>El encargado de ejecutar un programa en una computadora u otro sistema computacional es el CPU, lo realiza siguiendo el llamado ciclo Fetch Decode Execute, con este ciclo se ejecutan todas las tareas que una computadora puede realizar.</p>
+                <ul>Este ciclo tiene algunas variantes y conforme ha avanzado el tiempo y la tecnología ha sufrido algunos cambios, pero el ciclo básico se conforma de las siguientes etapas:
+                        
+                              <li><font color="09473d"><b>Traer la instrucción</b></font>: Se obtiene la instrucción desde memoria y se almacena en el registro del CPU para instrucciones.</li>
+                              <li><font color="09473d"><b>Decodificar la instrucción</b></font>: Se identifica el modo de direccionamiento de la instrucción y la ubicación de los datos a tratar, ya sea de memoria, registro o instrucción directamente. </li>
+                              <li><font color="09473d"><b>Carga de Parámetros</b></font>: Se ejecuta la lectura, cargando todos los datos identificados en el paso anterior.</li></b> </font>
+                              <li><font color="09473d"><b>Ejecutar</b></font>: Se ejecuta la instrucción ya configurada, realiza la tarea indicada, ya sea una suma, resta, almacenar información, extraer información etc.</li>
+                              <li><font color="09473d"><b>Almacenar</b></font>: Se almacena el resultado obtenido de ejecutar la instrucción, por ejemplo, el resultado de una suma o un índice (Número) como resultado de éxito de almacenar u obtener información de un archivo, entre otros.</li></b> </font>
+                              <li><font color="09473d"><b>Actualizar PC</b></font>: Esta etapa es la de actualizar el registro PC (Program Counter) que contiene la siguiente dirección a ejecutar.</li></b> </font>
+                            </ul>
+                <p>Evidentemente al ser un ciclo estas etapas se repiten constantemente durante el funcionamiento de la computadora.
+                <br><br>Se debe considerar que el ciclo expuesto anteriormente es muy básico. Como se mencionaba hoy en día estos ciclos han tenido algunas alteraciones y optimizado de gran manera, como se sabe los sistemas de hoy en día son multitareas, lo cual conlleva a una alteración en este ciclo, además de las diferentes técnicas para reducir el tiempo de ejecución de instrucciones con temas de concurrencia y paralelismo en los procesadores modernos.
+                <br><br>El ciclo expuesto nos muestra un poco la forma en la que las computadoras funcionan, todo el proceso que conlleva ejecutar una instrucción que puede parecer muy simple, además este ciclo básico permite darse una idea de cómo ha evolucionado los procesadores y las técnicas para reducir el tiempo de ejecución dado que los sistemas actuales ejecutan de forma simultánea muchas veces este ciclo, siendo este modificado y más eficiente.</p>
+                <center><img src="https://hardzone.es/app/uploads-hardzone.es/2020/11/Unidad-Control-Ciclo-Instruccion.jpg" width="400" height="400"></center>
+            </div>
+
+            <div id="2.3.2" class="contenedor-individual">
+                <br> <p><u class="subtitulo">2.3.2 Segmentación de instrucciones</u>
+                <br>La segmentación de las instrucciones (pipeline) consiste en dividir el ciclo de ejecución de las instrucciones en un conjunto de etapas. Estas etapas pueden coincidir o no con las fases del ciclo de ejecución de las instrucciones.
+                <br><br>
+                El objetivo de la segmentación es ejecutar simultáneamente diferentes etapas de distintas instrucciones, lo cual permite aumentar el rendimiento del procesador sin tener que hacer más rápidas todas las unidades del procesador (ALU, UC, buses, etc.) y sin tener que duplicarlas.
+                <br><br>
+                La división de la ejecución de una instrucción en diferentes etapas se debe realizar de tal manera que cada etapa tenga la misma duración, generalmente un ciclo de reloj. Es necesario añadir registros para almacenar los resultados intermedios entre las diferentes etapas, de modo que la información generada en una etapa esté disponible para la etapa siguiente.</p>
+                
+            </div>
+
+            <div id="2.3.3" class="contenedor-individual">
+                <p><u class="subtitulo">2.3.3 Conjunto de instrucciones</u>
+                <br>Un conjunto de instrucciones o repertorio de instrucciones, juego de instrucciones o ISA (del inglés Instruction Set Architecture, Arquitectura del Conjunto de Instrucciones) es una especificación que detalla las instrucciones que una CPU de un ordenador puede entender y ejecutar, o el conjunto de todos los comandos implementados por un diseño particular de una CPU. El término describe los aspectos del procesador generalmente visibles a un programador, incluyendo los tipos de datos nativos, las instrucciones, los registros, la arquitectura de memoria y las interrupciones, entre otros aspectos.</p>
+                <ol>Existe principalmente de 3 tipos:
+                              <li><font color="09473d"><b>CISC (Complex Instruction Set Computer)</b></font></li>
+                              <li><font color="09473d"><b>RISC (Reduced Instruction Set Computer)</b></font></li>
+                              <li><font color="09473d"><b>SISC (Specific Instruction Set Computer)</b></font></li>
+                            </ol>
+            <p>La arquitectura del conjunto de instrucciones se emplea a veces para distinguir este conjunto de características de la microarquitectura, que son los elementos y técnicas que se emplean para implementar el conjunto de instrucciones. Entre estos elementos se encuentras las microinstrucciones y los sistemas de caché.</p>
+                            
+            </div>
+            <div id="2.3.4" class="contenedor-individual">
+                <p><u class="subtitulo">2.3.4 Modos de direccionamiento</u>
+                <br>En informática, los modos de direccionamiento son las diferentes maneras de especificar un operando dentro de una instrucción en lenguaje ensamblador.</p>
+                <p>No existe una forma generalmente aceptada de nombrar a los distintos modos de direccionamiento. En particular, los distintos autores y fabricantes de equipos pueden dar nombres diferentes para el modo de hacer frente al mismo, o los mismos nombres, a los diferentes modos de direccionamiento.
+                    Además, un modo de direccionamiento que en una determinada arquitectura se trata como un modo de direccionamiento, puede representar la funcionalidad que en otra arquitectura está cubierto por dos o más modos de direccionamiento.</p>             
+            </div>
+
+            <div id="casos" class="contenedor">
+                <font size="7" face= times new roman color="#261483"><center>
+                    <p><b>2.4 CASOS DE ESTUDIO DE CPU REALES</b> </font> </p> 
+                <p>I-8086: Los registros del procesador, se usan para contener los datos con que se está trabajando puesto que el acceso a los registros es mucho más rápido que los accesos a memoria. Se pueden realizar operaciones aritméticas y lógicas, comparaciones, entre otras. Los modos del 8086 son indirectos por registro, indexados o directos por registro.
+                    <br><br>
+                    Motorola 68000: El mismo direccionamiento lleva implícito el tipo de registro sobre el que trabaja (direcciones o datos). Está basado en dos bancos de 8 registros de 32 bits. Un banco es de datos (Dn) y el otro de punteros (An). Además contiene un contador de programa de 32 bits y un registro de estado de 16 bits.
+                    <br><br>
+                    80386: Para este microprocesador existe un modo nuevo que requiere un byte adicional denominado SIB (escala, índice, base) que se añade al byte de operandos, es útil para direccionar elementos de vectores de longitudes diferentes en bucles. Es una alternativa a los modos autoindexados que esta máquina no soporta.</p>
+            </div>
+    </div>
+    </body>
+</html>
